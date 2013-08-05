@@ -1,0 +1,53 @@
+HOST: http://www.google.com/
+
+--- TicTacToe ---
+
+---
+Welcome to the Tic Tac Toe API Game Service API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
+---
+
+--
+Game Resources
+The following is a section of resources related to games
+--
+
+Creates a new game
+POST /games
+> Content-Type: application/json
+{ "xPlayerId":"Id of player x", "oPlayerId": "Id of player y" }
+< 201
+< Location: If created, URL to the new location
+
+Adds a move to the game
+POST /games/moves
+> Content-Type: application/json
+{ "playerId":"player making the move", "move": {"horizontalPosition":"1", "verticalPosition": "2" }}
+< 200
+< Content-Type: application/json
+< Location: If created, URL to the new location
+
+
+List a game, gameid identifies the game being requested
+GET /games/{gameid}
+< 200
+< Content-Type: application/json
+{   "xPlayerId":"Id of player x",         
+    "oPlayerId": "Id of player o",
+    "state": "One of the following: InProgress, Finished",
+    "startdatetime": "Start date/time",
+    "winner": "Plyaer Id of the winner",
+    "moves":[{  "id": "move number",
+                "datetime":"datetime of the move",
+                "playerShape":"Shape used for the move", "x or y",
+                "horizontalPosition": "move horizontal position, upper left is 1 (horizontal) ,1 (vertical)",
+                "verticalPostion": "move vertical position, lower right is 3 (horizontal), 3 (vertical)" }]
+}
+
+
+-- Payment Resources --
+
+This resource allows you to submit payment information to process your *shopping cart* items
+POST /payment
+{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
+< 200
+{ "receipt": "/payment/receipt/1" }
