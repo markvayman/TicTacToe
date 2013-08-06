@@ -12,7 +12,7 @@ The following is a section of resources related to games
 --
 
 Creates a new game
-POST /games
+POST /api/games
 > Content-Type: application/json
 { "xPlayerId":"Id of player x", "oPlayerId": "Id of player y" }
 < 201
@@ -28,7 +28,7 @@ POST /games/moves
 
 
 List a game, gameid identifies the game being requested
-GET /games/{gameid}
+GET /api/games/{gameid}
 < 200
 < Content-Type: application/json
 {   "xPlayerId":"Id of player x",         
@@ -47,7 +47,7 @@ GET /games/{gameid}
 -- Payment Resources --
 
 This resource allows you to submit payment information to process your *shopping cart* items
-POST /payment
+POST /api/payment
 { "cc": "12345678900", "cvc": "123", "expiry": "0112" }
 < 200
 { "receipt": "/payment/receipt/1" }
